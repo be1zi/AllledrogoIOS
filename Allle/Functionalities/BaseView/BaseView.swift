@@ -21,17 +21,25 @@ class BaseView: UIViewController {
     
     private func setupNavigationBarItems(){
         
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 10, width: UIScreen.main.bounds.width, height: 40))
+        navBar.barTintColor = UIColor.white
+        
         let navItem = UINavigationItem(title: "ALLLEDROGO")
         let logoutButton = UIButton(type: .system)
         logoutButton.setImage(#imageLiteral(resourceName: "logout"), for: .normal)
-        logoutButton.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
+        logoutButton.addTarget(self, action: #selector(logout), for: UIControlEvents.touchUpInside )
         
-        let logoutItem = UIBarButtonItem(customView: logoutButton)
-        navItem.setLeftBarButton(logoutItem, animated: false)
+        navItem.leftBarButtonItem = UIBarButtonItem(customView: logoutButton)
         
         navBar.setItems([navItem], animated: false)
         self.view.addSubview(navBar)
         
     }
+    
+  @objc func logout(){
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    guard let viewController = storyboard.instantiateInitialViewController() as? ViewController else{
+        return
+    }
+    self.present(viewController, animated: true, completion: nil)    }
 }
