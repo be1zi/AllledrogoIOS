@@ -76,6 +76,7 @@ class ViewController: UIViewController {
             }else{
             
                 DispatchQueue.main.async {
+                    print(parseResult);
                     let storyboard = UIStoryboard(name: "BaseView", bundle: nil)
                     guard let viewController = storyboard.instantiateInitialViewController() as? BaseView else{
                         return
